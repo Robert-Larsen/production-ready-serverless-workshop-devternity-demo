@@ -100,7 +100,7 @@ resources:
     restaurantsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: r${ssm:/${self:service}/${self:provider.stage}/table_name}
+        TableName: ${ssm:/${self:service}/${self:provider.stage}/table_name}
         AttributeDefinitions:
           - AttributeName: name
             AttributeType: S
