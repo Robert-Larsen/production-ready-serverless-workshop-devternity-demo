@@ -1,4 +1,4 @@
-service: workshop-yancui
+service: workshop-robert
 
 plugins:
   - serverless-pseudo-parameters
@@ -100,7 +100,7 @@ resources:
     restaurantsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: restaurants-${self:provider.stage}-yancui
+        TableName: restaurants-${self:provider.stage}-robert
         AttributeDefinitions:
           - AttributeName: name
             AttributeType: S
@@ -114,20 +114,20 @@ resources:
     orderEventsStream:
       Type: AWS::Kinesis::Stream
       Properties: 
-        # Name: orders-${self:provider.stage}-yancui
-        Name: ${ssm:/workshop-yancui/dev/stream_name}
+        Name: orders-${self:provider.stage}-robert
+        # Name: ${ssm:/workshop-robert/dev/stream_name}
         ShardCount: 1
 
     restaurantNotificationTopic:
       Type: AWS::SNS::Topic
       Properties: 
-        DisplayName: restaurants-${self:provider.stage}-yancui
-        TopicName: restaurants-${self:provider.stage}-yancui
+        DisplayName: restaurants-${self:provider.stage}-robert
+        TopicName: restaurants-${self:provider.stage}-robert
 
     mySubscription:
       Type: AWS::SNS::Subscription
       Properties:
-        Endpoint: <enter your email>
+        Endpoint: robert@robert-larsen.net
         Protocol: email
         TopicArn: 
           Ref: restaurantNotificationTopic            
